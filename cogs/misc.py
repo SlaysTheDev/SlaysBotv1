@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 import random
+import nmap
+import ipinfo
 
 class Misc(commands.Cog):
     def __init__(self, client):
@@ -42,6 +44,19 @@ class Misc(commands.Cog):
 
 
 
+    @commands.command(aliases=['inv'])
+    async def invite(self, ctx):
+        """Returns an invite for the bot (not really)"""
+        return await ctx.send("**fuck off, you can't invite me to your server.**")
+
+
+
+    @commands.command()
+    async def uptime(self, ctx):
+        """Shows Slaysbotl Bot's uptime"""
+        up = abs(self.bot.uptime - int(time.perf_counter()))
+        up = str(datetime.timedelta(seconds=up))
+        await self.bot.say("`Uptime: {}`".format(up))
 
 
 def setup(client):

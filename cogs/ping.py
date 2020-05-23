@@ -18,6 +18,10 @@ class Ping(commands.Cog):
         await ctx.send(f'> Your Ping is {round(self.client.latency * 1000)}ms :hourglass:')
 
 
+    @commands.command()
+    async def whois(self, ctx, host: str):
+        await ctx.send('**(Starting Task)** Getting IP of `%s`...' % host)
+        await ctx.send('**IP:** ``%s``' % socket.gethostbyname(host))
 
 
 

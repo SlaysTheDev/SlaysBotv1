@@ -5,10 +5,7 @@ class Info(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-
-    @commands.command()
-    async def about(self, ctx):
-        await ctx.send("**Created by Slays#6689, Source Not public yet.**")
+        
 
     @commands.command(aliases=['si', 'server'])
     async def serverinfo(self, ctx):
@@ -53,6 +50,36 @@ class Info(commands.Cog):
         embed.add_field(name="Bot?", value=member.bot)
 
         await ctx.send(embed=embed)
+
+
+
+
+
+
+    @commands.command()
+    async def about(self, ctx):
+
+        embed = discord.Embed(color=ctx.author.color, timestamp=ctx.message.created_at)
+
+        embed.set_author(name="Bot Info" ,icon_url=ctx.author.avatar_url)
+
+        embed.set_thumbnail(url=ctx.bot.user.avatar_url)
+        embed.add_field(name='Author', value='**Slays#6689**')
+        embed.add_field(name='Guilds', value=len(self.client.guilds))
+        embed.add_field(name="Library", value="`**discord.py**",)
+        embed.add_field(name="Commands loaded", value=len([x.name for x in self.client.commands]),)
+        embed.add_field(name='Discord', value='https://discord.gg/xygFV7')
+        embed.add_field(name='Website', value='https://slaysvpns.com/')
+
+
+
+
+        await ctx.send(embed=embed)
+
+
+
+
+
 
 def setup(client):
     client.add_cog(Info(client))

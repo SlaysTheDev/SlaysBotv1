@@ -6,23 +6,37 @@ class Mod(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-
+    #clear command deletes messages
     @commands.command()
-    @commands.has_permissions(manage_messages=True)
+    @commands.has_permissions(manage_messages=True) 
     async def clear(self, ctx, amount : int):
         await ctx.channel.purge(limit=amount)
         await ctx.send(f'**Purged {amount} Messages**') 
-
+    
+    #on error command list for a error and awaits 
     @commands.Cog.listener() #Listens for errors and prints out a error to discord if a command is not found
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.CommandNotFound):
             await ctx.send(f'> **Error Command Not Found.**')
+    
+    #clear error event
+    @clear.error
+    async def clear_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send('**Specify an amount of messages to delete.**')
+
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, member: discord.Member, *, reason=None):
         await member.kick(reason=reason)
         await ctx.send(f'> User {member} has been kicked!')
+    
+    #kick error event
+    @kick.error
+    async def kick_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send('**You must specify a user to kick.**')
 
 
     @commands.command()
@@ -30,6 +44,12 @@ class Mod(commands.Cog):
     async def ban(self, ctx, member: discord.Member, *, reason=None):
         await member.ban(reason=reason)
         await ctx.send(f'> User {member} has been banned!.')
+
+    #kick error event
+    @ban.error
+    async def ban_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send('**You must specify a user to ban.**')
 
     @commands.command(aliases=["stop", "logout", "exit"])
     @commands.is_owner()
@@ -95,10 +115,6 @@ class Mod(commands.Cog):
         em.set_footer(text=f'User ID: {ban.user.id}')
 
         await ctx.send(embed=em)
-
-
-
-
 
 
 
