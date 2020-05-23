@@ -40,6 +40,19 @@ class Buy(commands.Cog):
         await ctx.send(embed=embed)
 
 
+    @commands.command(aliases=['price'])
+    async def prices(self, ctx):
+
+        embed = discord.Embed(color=ctx.author.color, timestamp=ctx.message.created_at)
+
+        embed.set_author(name="VPN Prices",)
+        embed.add_field(name='**1 Month VPN Package**', value='``$5``',inline=True)
+        embed.add_field(name='**3 Months VPN Package**', value='``$15``',inline=False)
+        embed.add_field(name='**1 Year VPN Package (3 Concurrent connections)**', value="``$60``",inline=True)
+        embed.add_field(name='**Extra Concurrents**', value="Extra Concurrents are ``$2`` per concurrent connection")
+
+        await ctx.send(embed=embed)
+
 
 
 

@@ -18,7 +18,7 @@ class Help(commands.Cog):
         embed.add_field(name='``Ping``' , value="Responds with your ping to the bot")
         embed.add_field(name='``Serverinfo``', value="**Show's information about the server**",)
         embed.add_field(name='``Slots``' , value="Fun Slots Game",)
-        embed.add_field(name='``botinfo``', value="**Show's information about the Developer**",)
+        embed.add_field(name='``About``', value="**Show's information about the Developer**",)
         embed.add_field(name='``Info``', value="**Show's information about a user**", )
         embed.add_field(name='```Ban```', value="**Bans a user from the discord** (__Requires Ban Permissions__)", )
         embed.add_field(name='``Kick``', value="**Kicks a user from the discord** (__Requires Kick Permissions__)", )
@@ -31,9 +31,11 @@ class Help(commands.Cog):
         embed.add_field(name='``Whois``', value="**Domain to IPs**")
         embed.add_field(name='``ServerStatus``',value="**Displays the current status of the VPN servers**")
         embed.add_field(name='```HowtoBuy```',value='**Shows a guide on how to buy**')
-        
+        embed.add_field(name='``VPN Prices``', value="**Displays the prices of my VPNs**")
+
+
         await ctx.message.author.send(embed=embed)
-        await ctx.send(f'``Commands have been sent to you in a dm``')
+        await ctx.send(f'**Commands have been sent to you in a dm**')
 
 
 
