@@ -7,41 +7,84 @@ class Help(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command()
-    async def help(self,ctx,):
-        
 
-        embed = discord.Embed(color=ctx.author.color, timestamp=ctx.message.created_at)
+    @commands.group(name='help', invoke_without_command=True)
+    async def help(self, ctx):
+        if ctx.invoked_subcommand is None:
 
-        embed.set_author(name="Help Commands" ,icon_url=ctx.author.avatar_url)
+            embed = discord.Embed(color=ctx.author.color, timestamp=ctx.message.created_at)
 
-        embed.add_field(name='``Ping``' , value="Responds with your ping to the bot")
-        embed.add_field(name='``Serverinfo``', value="**Show's information about the server**",)
-        embed.add_field(name='``Slots``' , value="Fun Slots Game",)
-        embed.add_field(name='``About``', value="**Show's information about the Developer**",)
-        embed.add_field(name='``Info``', value="**Show's information about a user**", )
-        embed.add_field(name='```Ban```', value="**Bans a user from the discord** (__Requires Ban Permissions__)", )
-        embed.add_field(name='``Kick``', value="**Kicks a user from the discord** (__Requires Kick Permissions__)", )
-        embed.add_field(name='``Mute``', value="**Mutes a user for a given duration** (__Requires Mute Permissions__)",)
-        embed.add_field(name='``UnMute``', value="**Unmutes a muted user** (__Requires UnMute Permissions__)",)
-        embed.add_field(name='``Baninfo``', value="**Show's a reason why a user was banned** (__Requires Audit log Permissions__)",)
-        embed.add_field(name='``Clear``', value="**Purges a specified amount of messages** (__Requires Manage messages Permissions__)")
-        embed.add_field(name='``Warn``', value="**Warn's a user**")
-        embed.add_field(name='``Invite``', value="**Invite this bot to your discord**")
-        embed.add_field(name='``Whois``', value="**Domain to IPs**")
-        embed.add_field(name='``ServerStatus``',value="**Displays the current status of the VPN servers**")
-        embed.add_field(name='```HowtoBuy```',value='**Shows a guide on how to buy**')
-        embed.add_field(name='``VPN Prices``', value="**Displays the prices of my VPNs**")
-
-
-        await ctx.message.author.send(embed=embed)
-        await ctx.send(f'**Commands have been sent to you in a dm**')
+            embed.set_author(name="Base Help Commands")
+            embed.add_field(name=":tada: Fun", value='``.help fun``- See all fun related commnands', inline=False)
+            embed.add_field(name=':tools: Moderation', value='``.help moderation`` -See all utilities and moderation commands', inline=False)
+            embed.add_field(name=':notebook: info',value='``.help info`` - See all information related commands', inline=False)
+            embed.add_field(name=':ticket: Tickets',value='``.help tickets`` - See all support ticket related commands',inline=False)
+            embed.add_field(name=':white_check_mark: Verification',value='``.help verification`` - See all verification related commands',inline=False)
 
 
 
 
+            await ctx.send(embed=embed)
 
-        
+
+
+    @help.command(name='fun',)
+    async def fun_subcommand(self, ctx):
+            embed = discord.Embed(color=ctx.author.color, timestamp=ctx.message.created_at)
+
+            embed.set_author(name="Fun Commands")
+            embed.add_field(name=":slot_machine: Slots", value='``.slots``-Play a Fun Slots Game', inline=False)
+            embed.add_field(name='Invite',value='``.invite`` - Invite this bot to your discord', inline=False)
+            
+
+
+
+
+            await ctx.send(embed=embed)
+
+
+
+    @help.command(name='moderation',)
+    async def moderation_subcommand(self, ctx):
+            embed = discord.Embed(color=ctx.author.color, timestamp=ctx.message.created_at)
+            
+            embed.set_author(name="Moderation Commands")
+            embed.add_field(name='Kick', value='``.kick [user]`` - Kicks a user from the discord server',inline=False)
+            embed.add_field(name='Ban', value='``.ban [user]`` - Bans a user from the discord server',inline=False)
+            embed.add_field(name='Banifno', value='``.baninfo [user id]`` - Retrives a reason why a user was banned from audit log',inline=False)
+            embed.add_field(name='Mute', value='``.mute [user]`` - mutes a user from the discord server',inline=False)
+            embed.add_field(name='Warn', value='``.warn [user]`` - Warn a user for being naughty',inline=False)
+            embed.add_field(name='Clear', value='``.clear [amount]`` - Purges a specified amount of messages',inline=False)
+
+            await ctx.send(embed=embed)
+
+
+    @help.command(name='info',)
+    async def info_subcommand(self, ctx):
+            embed = discord.Embed(color=ctx.author.color, timestamp=ctx.message.created_at)
+            
+            embed.set_author(name="Info Commands")
+            embed.add_field(name='ServerInfo', value='``.sinfo`` - See information about the server',inline=False)
+            embed.add_field(name='UserInfo', value='``.uinfo [user]`` - See information about the giver user',inline=False)
+            embed.add_field(name='ServerInfo', value='``.sinfo`` - See information about the server',inline=False)
+            embed.add_field(name='About', value='``.about`` - See info about the developer and the bot', inline=False)
+            embed.add_field(name='VPN Prices', value='``.prices`` - See the current prices of the VPNst', inline=False)
+            embed.add_field(name='Net Prices', value='``.nets`` - See the current prices for Botnet spots', inline=False)
+            embed.add_field(name='Status', value='``.status`` - See current status of VPN servers (auto updates)', inline=False)
+
+            await ctx.send(embed=embed)
+
+
+    @help.command(name='tickets',)
+    async def tickets_subcommand(self, ctx):
+        await ctx.send('**this is a WiP**')
+
+
+
+
+    @help.command(name='verification',)
+    async def verification_subcommand(self, ctx):
+        await ctx.send('**This is a WiP**')
 
 
 def setup(client):

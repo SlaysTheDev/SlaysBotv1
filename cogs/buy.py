@@ -20,6 +20,7 @@ class Buy(commands.Cog):
 
         await ctx.message.author.send(embed=embed)
         await ctx.send('**Check your DMs**')
+        await ctx.message.delete()
 
 
 
@@ -30,7 +31,7 @@ class Buy(commands.Cog):
         embed = discord.Embed(color=ctx.author.color, timestamp=ctx.message.created_at)
 
         embed.set_author(name="VPN Status",)
-        embed.add_field(name=':flag_de: ``Link 11 + Corero Server``', value="Status Offline :x: ",inline=True)
+        embed.add_field(name=':flag_de: ``Link 11 + Corero Server``', value="Status Online :white_check_mark: ",inline=True)
         embed.add_field(name=':flag_ca: ``OVH Server 1``', value="Status Online :white_check_mark: ",inline=False)
         embed.add_field(name=':flag_ca: ``OVH Server 2``', value="Status Offline :x: ",inline=False)
         embed.add_field(name=":flag_us: ``Path Server``", value="Status Online :white_check_mark:",inline=True)
@@ -38,6 +39,7 @@ class Buy(commands.Cog):
 
 
         await ctx.send(embed=embed)
+        await ctx.message.delete()
 
 
     @commands.command(aliases=['price'])
@@ -51,10 +53,23 @@ class Buy(commands.Cog):
         embed.add_field(name='**1 Year VPN Package (3 Concurrent connections)**', value="``$60``",inline=True)
         embed.add_field(name='**Extra Concurrents**', value="Extra Concurrents are ``$2`` per concurrent connection")
 
+
         await ctx.send(embed=embed)
+        await ctx.message.delete()
+
+    @commands.command(aliases=['nets','net prices'])
+    async def netprice(self, ctx):
+
+        embed = discord.Embed(color=ctx.author.color, timestamp=ctx.message.created_at)
+        embed.add_field(name='1 Month Spot', value='$10',inline=True)
+        embed.add_field(name='``3`` Months Spot', value='$30',inline=True)
+        embed.add_field(name='``1`` Year Spot', value='$60',inline=True)
+        embed.add_field(name='To Purchase a Spot Contact ', value='**AssaSSAins301#6401**')
+        
 
 
-
+        await ctx.send(embed=embed)
+        await ctx.message.delete()
 
 
 

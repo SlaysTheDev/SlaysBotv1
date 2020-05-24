@@ -7,7 +7,7 @@ class Info(commands.Cog):
 
         
 
-    @commands.command(aliases=['si', 'server'])
+    @commands.command(aliases=['si', 'server','sinfo'])
     async def serverinfo(self, ctx):
         '''Get server info'''
         guild = ctx.guild
@@ -27,7 +27,7 @@ class Info(commands.Cog):
         em.set_author(name=guild.name, icon_url=None or guild.icon_url)
         await ctx.send(embed=em)
 
-    @commands.command()
+    @commands.command(aliases=['uinfo'])
     async def info(self, ctx, member: discord.Member):
 
         roles = [role for role in member.roles]
