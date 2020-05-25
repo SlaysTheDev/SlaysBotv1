@@ -35,7 +35,8 @@ class Help(commands.Cog):
             embed.set_author(name="Fun Commands")
             embed.add_field(name=":slot_machine: Slots", value='``.slots``-Play a Fun Slots Game', inline=False)
             embed.add_field(name='Invite',value='``.invite`` - Invite this bot to your discord', inline=False)
-            
+            embed.add_field(name='Ping',value='``.ping`` - SHows your latency to the bot', inline=False)
+            embed.add_field(name='Whois',value='``.whois [domain]`` - Find the ip address of a given domain')
 
 
 
@@ -66,7 +67,6 @@ class Help(commands.Cog):
             embed.set_author(name="Info Commands")
             embed.add_field(name='ServerInfo', value='``.sinfo`` - See information about the server',inline=False)
             embed.add_field(name='UserInfo', value='``.uinfo [user]`` - See information about the giver user',inline=False)
-            embed.add_field(name='ServerInfo', value='``.sinfo`` - See information about the server',inline=False)
             embed.add_field(name='About', value='``.about`` - See info about the developer and the bot', inline=False)
             embed.add_field(name='VPN Prices', value='``.prices`` - See the current prices of the VPNst', inline=False)
             embed.add_field(name='Net Prices', value='``.nets`` - See the current prices for Botnet spots', inline=False)
