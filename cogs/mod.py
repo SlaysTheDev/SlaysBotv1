@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import asyncio
+import time
 
 class Mod(commands.Cog):
     def __init__(self, client):
@@ -12,6 +13,7 @@ class Mod(commands.Cog):
     async def clear(self, ctx, amount : int):
         await ctx.channel.purge(limit=amount)
         await ctx.send(f'**Purged {amount} Messages**') 
+        await ctx.message.delete()
     
     #on error command list for a error and awaits 
     @commands.Cog.listener() #Listens for errors and prints out a error to discord if a command is not found
@@ -118,6 +120,29 @@ class Mod(commands.Cog):
 
 
 
+    @commands.command()
+    @commands.guild_only()
+    @commands.has_guild_permissions(manage_channels=True)
+    @commands.bot_has_guild_permissions(manage_channels=True)
+    async def lockdown(self, ctx, channel: discord.TextChannel=None):
+        channel = channel or ctx.channel
+
+        if ctx.guild.default_role not in channel.overwrites:
+            overwrites = {
+            ctx.guild.default_role: discord.PermissionOverwrite(send_messages=False)
+            }
+            await channel.edit(overwrites=overwrites)
+            await ctx.send(f"I have put **{channel.name}** on lockdown.")
+        elif channel.overwrites[ctx.guild.default_role].send_messages == True or channel.overwrites[ctx.guild.default_role].send_messages == None:
+            overwrites = channel.overwrites[ctx.guild.default_role]
+            overwrites.send_messages = False
+            await channel.set_permissions(ctx.guild.default_role, overwrite=overwrites)
+            await ctx.send(f"I have put **{channel.name}** on lockdown.")
+        else:
+            overwrites = channel.overwrites[ctx.guild.default_role]
+            overwrites.send_messages = True
+            await channel.set_permissions(ctx.guild.default_role, overwrite=overwrites)
+            await ctx.send(f"I have removed **{channel.name}** from lockdown.")
 
 
 

@@ -35,6 +35,7 @@ class Buy(commands.Cog):
         embed.add_field(name=':flag_ca: ``OVH Server 1``', value="Status Online :white_check_mark: ",inline=False)
         embed.add_field(name=':flag_ca: ``OVH Server 2``', value="Status Offline :x: ",inline=False)
         embed.add_field(name=":flag_us: ``Path Server``", value="Status Online :white_check_mark:",inline=True)
+        embed.set_footer(text='Automaticaly updates')
 
 
 

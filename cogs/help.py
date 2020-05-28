@@ -21,10 +21,12 @@ class Help(commands.Cog):
             embed.add_field(name=':ticket: Tickets',value='``.help tickets`` - See all support ticket related commands',inline=False)
             embed.add_field(name=':white_check_mark: Verification',value='``.help verification`` - See all verification related commands',inline=False)
 
+            embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 
 
 
             await ctx.send(embed=embed)
+            await ctx.message.delete()
 
 
 
@@ -39,6 +41,7 @@ class Help(commands.Cog):
             embed.add_field(name='Whois',value='``.whois [domain]`` - Find the ip address of a given domain')
 
 
+            embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 
 
             await ctx.send(embed=embed)
@@ -56,14 +59,19 @@ class Help(commands.Cog):
             embed.add_field(name='Mute', value='``.mute [user]`` - mutes a user from the discord server',inline=False)
             embed.add_field(name='Warn', value='``.warn [user]`` - Warn a user for being naughty',inline=False)
             embed.add_field(name='Clear', value='``.clear [amount]`` - Purges a specified amount of messages',inline=False)
+            embed.add_field(name='Lockdown', value='``.lockdown`` - Locksdown a channel for when getting raided',inline=False)
+
+            
+            embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 
             await ctx.send(embed=embed)
+            
 
 
     @help.command(name='info',)
     async def info_subcommand(self, ctx):
             embed = discord.Embed(color=ctx.author.color, timestamp=ctx.message.created_at)
-            
+
             embed.set_author(name="Info Commands")
             embed.add_field(name='ServerInfo', value='``.sinfo`` - See information about the server',inline=False)
             embed.add_field(name='UserInfo', value='``.uinfo [user]`` - See information about the giver user',inline=False)
@@ -71,6 +79,9 @@ class Help(commands.Cog):
             embed.add_field(name='VPN Prices', value='``.prices`` - See the current prices of the VPNst', inline=False)
             embed.add_field(name='Net Prices', value='``.nets`` - See the current prices for Botnet spots', inline=False)
             embed.add_field(name='Status', value='``.status`` - See current status of VPN servers (auto updates)', inline=False)
+            
+            embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+
 
             await ctx.send(embed=embed)
 

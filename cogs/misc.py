@@ -49,5 +49,16 @@ class Misc(commands.Cog):
         await ctx.message.delete()
 
 
+    @commands.command(aliases=['flip', 'coin'])
+    async def coinflip(self, ctx):
+        """ Coinflip! """
+        coinsides = ['Heads', 'Tails','Your Gay']
+        await ctx.send(f"**{ctx.author.name}** flipped a coin and got **{random.choice(coinsides)}**!")
+        await ctx.message.delete()
+
+
+
+
+
 def setup(client):
     client.add_cog(Misc(client))

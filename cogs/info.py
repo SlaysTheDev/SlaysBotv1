@@ -78,8 +78,5 @@ class Info(commands.Cog):
 
 
 
-
-
-
 def setup(client):
     client.add_cog(Info(client))
